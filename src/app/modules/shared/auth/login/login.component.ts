@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '../../../../../environments/environment';
+import { GlobalUtils } from '../../../../utils/global-utils';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +10,10 @@ import { environment } from '../../../../../environments/environment';
   styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
+    
+  public nombreApp: string = environment.APP_NAME;
   loginForm!: FormGroup;
   selectedTab = 0;
-  private readonly TOKEN_KEY = 'accessToken';
-  private readonly NOMBRE_USUARIO = 'nombreUsuario';
 
   constructor(
     private readonly fb: FormBuilder,
@@ -28,8 +29,8 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void {
     if (this.loginForm.valid) {
-      sessionStorage.setItem(this.TOKEN_KEY, environment.TOKEN);
-      sessionStorage.setItem(this.NOMBRE_USUARIO, 'Juan Pérez');
+      sessionStorage.setItem(GlobalUtils.TOKEN_KEY, environment.TOKEN);
+      sessionStorage.setItem(GlobalUtils.NOMBRE_USUARIO, 'Juan Pérez');
       this.router.navigate(['/app']);
     }
   }
