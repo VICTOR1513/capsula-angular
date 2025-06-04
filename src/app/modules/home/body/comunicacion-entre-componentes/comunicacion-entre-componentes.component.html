@@ -1,0 +1,68 @@
+<div style="max-width: 50%; margin: 40px auto; padding-bottom: 120px; font-family: Arial, sans-serif;">
+
+  <h2 style="text-align: center; margin-bottom: 30px; color: #333;">
+    <mat-icon style="vertical-align: middle; color: #4CAF50; font-size: 28px; margin-right: 6px;">compare_arrows</mat-icon>
+    Comunicación entre Componentes en Angular - Conceptos Básicos
+  </h2>
+
+  <!-- Comunicación Padre a Hijo -->
+  <app-card
+    title="Comunicación Padre a Hijo (@Input)"
+    icon="arrow_downward"
+    iconColor="#1565C0"
+    borderColor="#2196F3"
+    bgColor="#E3F2FD"
+    description="Permite pasar datos del componente padre al componente hijo mediante propiedades decoradas con <code>@Input()</code>."
+    note="Nota: Es útil para mostrar datos que el hijo no debe modificar directamente."
+    link="https://angular.io/guide/inputs-outputs">
+
+    <img src="https://angular.io/generated/images/guide/inputs-outputs/input.svg" alt="Ejemplo Comunicación Padre a Hijo" style="width: 60%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);" />
+
+  </app-card>
+
+  <!-- Comunicación Hijo a Padre (Property Binding [])-->
+  <app-card
+    title="Comunicación Hijo a Padre (@Output)"
+    icon="arrow_upward"
+    iconColor="#C2185B"
+    borderColor="#E91E63"
+    bgColor="#FCE4EC"
+    description="Permite que el componente hijo emita eventos hacia el padre usando un <code>@Output()</code> y <code>EventEmitter</code>."
+    note="Nota: Ideal para notificar acciones o cambios desde el hijo hacia el padre."
+    link="https://angular.io/guide/inputs-outputs"
+    [mostrarBoton]="true"
+    (evento)="recibirMensaje($event)"
+    (eventoObject)="recibirMensajeObject($event)">
+
+    <img src="https://angular.io/generated/images/guide/inputs-outputs/output.svg" alt="Ejemplo Comunicación Hijo a Padre" style="width: 60%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);" />
+
+  </app-card>
+
+  <!-- Comunicación Entre Hermanos -->
+  <app-card
+    title="Comunicación Entre Componentes Hermanos (Servicio Compartido)"
+    icon="swap_horiz"
+    iconColor="#2E7D32"
+    borderColor="#4CAF50"
+    bgColor="#E8F5E9"
+    description="Se usa un servicio para compartir datos y emitir eventos entre componentes que no están relacionados directamente."
+    note="Nota: El servicio utiliza <code>Subject</code> o <code>BehaviorSubject</code> para emitir y subscribirse a cambios."
+    link="https://angular.io/guide/component-interaction#parent-and-children-communicate-via-a-service">
+
+    <div style="display: flex; justify-content: space-around; margin: 40px;">
+      <app-componente-a></app-componente-a>
+      <app-componente-b></app-componente-b>
+    </div>
+
+    <p style="margin-top: 12px;">Componentes se suscriben a <code>mensajeActual</code> para recibir actualizaciones.</p>
+
+  </app-card>
+
+    <button mat-raised-button color="primary" (click)="volver()" style="margin: 20px 0;">
+    <mat-icon style="vertical-align: middle;">arrow_back</mat-icon>
+    <span style="vertical-align: middle;">Regresar</span>
+  </button>
+  
+</div>
+
+

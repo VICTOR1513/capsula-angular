@@ -1,0 +1,33 @@
+<app-header></app-header>
+
+<!-- CONTENIDO -->
+<main class="login-container mat-typography">
+  <h1>Arquetipo Infotec</h1>
+  <h2>Inicio de sesión</h2>
+  <p>Por favor, introduce tus credenciales.</p>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Correo</mat-label>
+      <input matInput type="email" formControlName="email" />
+      <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" formControlName="password" />
+      <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+
+    <div class="button-container">
+      <!-- Botón Aceptar -->
+      <button class="boton-aceptar">Validar datos</button>
+
+      <!-- Botón Cancelar -->
+      <!--button class="boton-cancelar">Cancelar</button-->
+
+    </div>
+  </form>
+</main>
+
+<app-footer></app-footer>

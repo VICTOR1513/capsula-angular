@@ -1,0 +1,155 @@
+<div style="max-width: 50%; margin: 40px auto; padding-bottom: 120px; font-family: Arial, sans-serif;">
+
+  <h2 style="text-align: center; margin-bottom: 30px; color: #333;">
+    <mat-icon style="vertical-align: middle; color: #3F51B5; font-size: 28px; margin-right: 6px;">route</mat-icon>
+    Routing en Angular - Conceptos Básicos
+  </h2>
+
+  <!-- ¿Qué es Routing? -->
+  <mat-card style="background-color: #E3F2FD; border-left: 6px solid #3F51B5; padding: 16px; margin-bottom: 20px;">
+    <h4 style="margin: 0 0 8px 0; color: #303F9F;">
+      <mat-icon style="vertical-align: middle; color: #303F9F; font-size: 20px; margin-right: 6px;">navigation</mat-icon>
+      ¿Qué es Routing?
+    </h4>
+    <p>El routing permite navegar entre diferentes componentes o páginas dentro de una aplicación Angular.</p>
+    <p style="font-style: italic; color: #1A237E;">Angular usa el módulo <code>RouterModule</code> para gestionar rutas y URLs.</p>
+    <a href="https://angular.io/guide/router" target="_blank" style="text-decoration:none; color:#303F9F; font-weight:600;">
+      Ver documentación oficial
+    </a>
+  </mat-card>
+
+  <!-- Definición de Rutas -->
+  <mat-card style="background-color: #FFF3E0; border-left: 6px solid #FF9800; padding: 16px; margin-bottom: 20px;">
+    <h4 style="color: #F57C00;">
+      <mat-icon style="vertical-align: middle; color: #F57C00; font-size: 20px; margin-right: 6px;">list</mat-icon>
+      Definición Básica de Rutas
+    </h4>
+    <p>En el archivo <code>app-routing.module.ts</code> defines las rutas y sus componentes asociados.</p>
+    <pre style="background-color: #FFE0B2; padding: 12px; border-radius: 4px; overflow-x:auto;">
+    const routes: Routes = [
+      &#123; path: '', redirectTo: '/home', pathMatch: 'full' &#125;,
+      &#123; path: 'home', component: HomeComponent &#125;,
+      &#123; path: 'about', component: AboutComponent &#125;
+    ];
+    </pre>
+
+    <a href="https://angular.io/guide/router#defining-routes" target="_blank" style="text-decoration:none; color:#F57C00; font-weight:600;">
+      Ver documentación oficial
+    </a>
+  </mat-card>
+
+  <!-- Rutas con Parámetros -->
+  <mat-card style="background-color: #E8F5E9; border-left: 6px solid #4CAF50; padding: 16px; margin-bottom: 20px;">
+    <h4 style="color: #388E3C;">
+      <mat-icon style="vertical-align: middle; color: #388E3C; font-size: 20px; margin-right: 6px;">filter_1</mat-icon>
+      Rutas con Parámetros
+    </h4>
+    <p>Puedes pasar parámetros en la ruta para mostrar datos dinámicos.</p>
+    <pre style="background-color: #C8E6C9; padding: 12px; border-radius: 4px; overflow-x:auto;">
+    &#123; path: 'user/:id', component: UserComponent &#125;
+
+    constructor(private route: ActivatedRoute) &#123;&#125;
+    ngOnInit() &#123;
+      this.route.params.subscribe(params => &#123;
+        console.log(params['id']);
+      &#125;);
+    &#125;
+    </pre>
+
+
+    <a [routerLink]="['/home/user', 1234567890]" style="color: #1976d2; text-decoration: underline; cursor: pointer;">
+      Ruta con parametro
+    </a>
+
+
+    <a href="https://angular.io/guide/router#route-parameters" target="_blank" style="text-decoration:none; color:#388E3C; font-weight:600;">
+      Ver documentación oficial
+    </a>
+  </mat-card>
+
+  <!-- Rutas Hijas -->
+  <mat-card style="background-color: #F3E5F5; border-left: 6px solid #9C27B0; padding: 16px; margin-bottom: 20px;">
+    <h4 style="color: #7B1FA2;">
+      <mat-icon style="vertical-align: middle; color: #7B1FA2; font-size: 20px; margin-right: 6px;">layers</mat-icon>
+      Rutas Hijas (Child Routes)
+    </h4>
+    <p>Permiten organizar rutas anidadas para componentes hijos dentro de un componente padre.</p>
+
+    <pre style="background-color: #E1BEE7; padding: 12px; border-radius: 4px; overflow-x:auto;">
+    const routes: Routes = [
+      &#123;
+        path: 'dashboard', component: DashboardComponent,
+        children: [
+          &#123; path: 'stats', component: StatsComponent &#125;,
+          &#123; path: 'reports', component: ReportsComponent &#125;
+        ]
+      &#125;
+    ];
+    </pre>
+
+    <a href="https://angular.io/guide/router#child-routing-component" target="_blank" style="text-decoration:none; color:#7B1FA2; font-weight:600;">
+      Ver documentación oficial
+    </a>
+  </mat-card>
+
+  <!-- Ruta comodín -->
+  <mat-card style="background-color: #FBE9E7; border-left: 6px solid #FF5722; padding: 16px; margin-bottom: 20px;">
+    <h4 style="color: #D84315;">
+      <mat-icon style="vertical-align: middle; color: #D84315; font-size: 20px; margin-right: 6px;">error_outline</mat-icon>
+      Ruta comodín - Página no encontrada
+    </h4>
+    <p>Permite mostrar una vista personalizada cuando el usuario accede a una ruta no válida.</p>
+    <pre style="background-color: #FFCCBC; padding: 12px; border-radius: 4px; overflow-x:auto;">
+&#123; path: '**', component: NotFoundComponent &#125;
+</pre>
+  </mat-card>
+
+  <!-- Navegación desde template y código -->
+  <mat-card style="background-color: #EDE7F6; border-left: 6px solid #673AB7; padding: 16px; margin-bottom: 20px;">
+    <h4 style="color: #512DA8;">
+      <mat-icon style="vertical-align: middle; color: #512DA8; font-size: 20px; margin-right: 6px;">compare_arrows</mat-icon>
+      Navegar desde Template vs Código
+    </h4>
+    <p><strong>Desde Template:</strong></p>
+    <pre style="background-color: #D1C4E9; padding: 12px; border-radius: 4px; overflow-x:auto;">
+  &lt;a mat-button routerLink="/home"&gt;Ir a Home&lt;/a&gt;
+    </pre>
+    <p><strong>Desde Código:</strong></p>
+    <pre style="background-color: #D1C4E9; padding: 12px; border-radius: 4px; overflow-x:auto;">
+    constructor(private router: Router) &#123;&#125;
+
+    irAHome() &#123;
+      this.router.navigate(['/home']);
+    &#125;
+    </pre>
+  </mat-card>
+
+  <!-- Router Outlet -->
+  <mat-card style="background-color: #E0F2F1; border-left: 6px solid #009688; padding: 16px; margin-bottom: 20px;">
+    <h4 style="color: #00796B;">
+      <mat-icon style="vertical-align: middle; color: #00796B; font-size: 20px; margin-right: 6px;">input</mat-icon>
+      ¿Dónde se muestran las vistas?
+    </h4>
+    <p>El componente activo se carga dentro de <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>.</p>
+  </mat-card>
+
+  <!-- Buenas prácticas -->
+  <mat-card style="background-color: #FFFDE7; border-left: 6px solid #FBC02D; padding: 16px; margin-top: 30px;">
+    <h4 style="color: #F9A825;">
+      <mat-icon style="vertical-align: middle; color: #F9A825; font-size: 20px; margin-right: 6px;">lightbulb</mat-icon>
+      Buenas prácticas
+    </h4>
+    <ul>
+      <li>Usa nombres de rutas significativos.</li>
+      <li>Mantén las rutas organizadas en módulos separados.</li>
+      <li>Evita rutas duplicadas.</li>
+      <li>Aplica guards para proteger rutas sensibles.</li>
+    </ul>
+  </mat-card>
+
+      <button mat-raised-button color="primary" (click)="volver()" style="margin: 20px 0;">
+    <mat-icon style="vertical-align: middle;">arrow_back</mat-icon>
+    <span style="vertical-align: middle;">Regresar</span>
+  </button>
+
+</div>

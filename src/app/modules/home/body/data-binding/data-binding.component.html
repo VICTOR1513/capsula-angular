@@ -1,0 +1,109 @@
+<div style="max-width: 50%; margin: 40px auto; padding-bottom: 120px;">
+  <h2 style="text-align: center; margin-bottom: 30px; font-family: Arial, sans-serif; color: #333;">
+    <mat-icon style="vertical-align: middle; color: #DD0031; font-size: 28px; margin-right: 6px;">code</mat-icon>
+    Data Binding en Angular - Conceptos Básicos
+  </h2>
+
+  <!-- INTERPOLACIÓN -->
+  <app-data-binding-card
+    title="Ejemplo de Interpolación"
+    icon="looks_one"
+    iconColor="#FF8F00"
+    borderColor="#FFC107"
+    bgColor="#FFF8E1"
+    [description]="'La interpolación permite mostrar el valor de una variable del componente dentro del HTML. Se utiliza con doble llave: <code>{{}}</code>.'"
+    [note]="'Nota: La interpolación es solo para <strong>mostrar</strong> datos en la vista, no para modificar valores.'"
+    link="https://angular.io/guide/interpolation"
+    linkText="Ver documentación oficial"
+  >
+
+    <!-- ------ EJEMPLO ------ -->
+    <h4>Ejemplo: {{ titulo }}</h4>
+    <!--p *ngIf="nombreUsuario">Hola, {{ nombreUsuario }}</p-->
+    <!-- -------------------- -->
+
+  </app-data-binding-card>
+
+  <!-- PROPERTY BINDING -->
+  <app-data-binding-card
+    title="Ejemplo de Property Binding"
+    icon="toggle_on"
+    iconColor="#2E7D32"
+    borderColor="#4CAF50"
+    bgColor="#E8F5E9"
+    [description]="'El Property Binding enlaza propiedades del componente a propiedades del DOM o de componentes. Se usa con corchetes: <code>[property]</code>.'"
+    [note]="'Nota: Se usa para <strong>modificar atributos o propiedades</strong> de elementos HTML, como habilitar/deshabilitar inputs o cambiar imágenes.'"
+    link="https://angular.io/guide/property-binding"
+    linkText="Ver documentación oficial"
+  >
+
+      <!-- ------ EJEMPLO ------ -->
+    <img [src]="imagen" alt="img" width="100" style="margin: 20px auto; display: block;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <mat-form-field appearance="fill" style="flex: 1;">
+        <mat-label>Campo deshabilitado</mat-label>
+        <input matInput [disabled]="estaDeshabilitado" placeholder="No puedes escribir aquí">
+      </mat-form-field>
+      <button mat-stroked-button color="primary" (click)="estaDeshabilitado = !estaDeshabilitado">
+        {{ estaDeshabilitado ? 'Habilitar' : 'Deshabilitar' }}
+      </button>
+    </div>
+    <!-- -------------------- -->
+
+  </app-data-binding-card>
+
+  <!-- TWO-WAY BINDING -->
+  <app-data-binding-card
+    title="Ejemplo de Two-Way Binding"
+    icon="sync_alt"
+    iconColor="#6A1B9A"
+    borderColor="#9C27B0"
+    bgColor="#F3E5F5"
+    [description]="'El Two-Way Binding sincroniza el valor del input con una variable del componente en ambos sentidos. Se usa con <code>[(ngModel)]</code>.'"
+    [note]="'Nota: Para usar <code>[(ngModel)]</code> asegúrate de importar <code>FormsModule</code> en tu módulo Angular. Es útil en formularios donde quieres <strong>mostrar y actualizar</strong> valores automáticamente.'"
+    link="https://angular.io/guide/two-way-binding"
+    linkText="Ver documentación oficial"
+  >
+
+      <!-- ------ EJEMPLO ------ -->
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Nombre de usuario</mat-label>
+      <input matInput [(ngModel)]="nombreUsuario" placeholder="Ingresa tu nombre">
+    </mat-form-field>
+    <p>Valor actual: <strong>{{ nombreUsuario }}</strong></p>
+    <!-- -------------------- -->
+
+  </app-data-binding-card>
+
+  <!-- EVENT BINDING -->
+  <app-data-binding-card
+    title="Ejemplo de Event Binding"
+    icon="touch_app"
+    iconColor="#0277BD"
+    borderColor="#03A9F4"
+    bgColor="#E1F5FE"
+    [description]="'El Event Binding ejecuta una función del componente cuando ocurre un evento en el DOM (como <code>click</code>). Se usa con paréntesis: <code>(event)</code>.'"
+    [note]="'Nota: Puedes acceder a detalles del evento usando la variable especial <code>$event</code>. Útil para manejar acciones del usuario como clics, teclas, movimientos, etc.'"
+    link="https://angular.io/guide/event-binding"
+    linkText="Ver documentación oficial"
+  >
+    <!-- ------ EJEMPLO ------ -->
+    <button mat-raised-button color="primary" (click)="mostrarSaludo()">
+      Saludar
+    </button>
+    <!-- -------------------- -->
+  </app-data-binding-card>
+
+  <button mat-raised-button color="primary" (click)="volver()" style="margin: 20px 0;">
+    <mat-icon style="vertical-align: middle;">arrow_back</mat-icon>
+    <span style="vertical-align: middle;">Regresar</span>
+  </button>
+
+</div>
+
+
+
+
+
+
+

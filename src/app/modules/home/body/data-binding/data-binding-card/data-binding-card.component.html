@@ -1,0 +1,14 @@
+<mat-card [style.background-color]="bgColor" [style.border-left]="'6px solid ' + borderColor" style="padding: 16px; margin-bottom: 20px;">
+  <h4 [style.color]="iconColor" style="margin: 0 0 8px 0;">
+    <mat-icon [style.color]="iconColor" style="vertical-align: middle; font-size: 20px; margin-right: 6px;">{{ icon }}</mat-icon>
+    {{ title }}
+  </h4>
+  <p style="margin-bottom: 12px;" [innerHTML]="description"></p>
+  <p style="font-style: italic; margin-bottom: 12px;" [style.color]="iconColor" [innerHTML]="note"></p>
+
+  <ng-content></ng-content>
+
+  <a *ngIf="link" [href]="link" target="_blank" [style.color]="iconColor" style="text-decoration:none; font-weight:600;">
+    {{ linkText || 'Ver documentación oficial' }}
+  </a>
+</mat-card>

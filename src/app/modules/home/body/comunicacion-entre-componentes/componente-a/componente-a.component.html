@@ -1,0 +1,21 @@
+<h3>Componente A</h3>
+
+<form>
+  <mat-form-field appearance="outline" style="display: block; margin-bottom: 12px;">
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="user.nombre" name="nombre" placeholder="Escribe tu nombre">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="display: block; margin-bottom: 12px;">
+    <mat-label>Apellido Paterno</mat-label>
+    <input matInput [(ngModel)]="user.apellidoPaterno" name="apellidoPaterno" placeholder="Escribe tu apellido paterno">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="display: block; margin-bottom: 12px;">
+    <mat-label>Apellido Materno</mat-label>
+    <input matInput [(ngModel)]="user.apellidoMaterno" name="apellidoMaterno" placeholder="Escribe tu apellido materno">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="enviar()">Enviar a Componente B</button>
+</form>
+

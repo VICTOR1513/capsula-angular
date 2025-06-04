@@ -1,0 +1,65 @@
+<div style="max-width: 1000px; margin: 40px auto; padding: 20px; font-family: 'Segoe UI', sans-serif;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+
+    <!-- Data Binding -->
+    <mat-card 
+      routerLink="/app/home/dataBinding"
+      class="custom-card"
+      appearance="outlined"
+      style="background-color: #F3E5F5; border-left: 6px solid #611232; padding: 20px; cursor: pointer; transition: box-shadow 0.3s ease;">
+      <h4 style="color: #611232; margin: 0 0 10px;">
+        <mat-icon style="vertical-align: middle; color: #611232; margin-right: 6px;">sync_alt</mat-icon>
+        Data Binding
+      </h4>
+      <p style="color: #424242; font-size: 14px;">
+        Mecanismo para conectar datos entre el componente TypeScript y el template HTML, en una o ambas direcciones.
+      </p>
+    </mat-card>
+
+    <!-- Comunicación entre Componentes -->
+    <mat-card 
+      routerLink="/app/home/comunicacionEntreComponentes"
+      class="custom-card"
+      appearance="outlined"
+      style="background-color: #F3E5F5; border-left: 6px solid #611232; padding: 20px; cursor: pointer; transition: box-shadow 0.3s ease;">
+      <h4 style="color: #611232; margin: 0 0 10px;">
+        <mat-icon style="vertical-align: middle; color: #611232; margin-right: 6px;">call_split</mat-icon>
+        Comunicación entre Componentes
+      </h4>
+      <p style="color: #424242; font-size: 14px;">
+        Técnicas para intercambiar datos entre componentes padre e hijo utilizando decoradores y servicios.
+      </p>
+    </mat-card>
+
+    <!-- Routing -->
+    <mat-card 
+      routerLink="/app/home/routing"
+      class="custom-card"
+      appearance="outlined"
+      style="background-color: #F3E5F5; border-left: 6px solid #611232; padding: 20px; cursor: pointer; transition: box-shadow 0.3s ease;">
+      <h4 style="color: #611232; margin: 0 0 10px;">
+        <mat-icon style="vertical-align: middle; color: #611232; margin-right: 6px;">alt_route</mat-icon>
+        Routing
+      </h4>
+      <p style="color: #424242; font-size: 14px;">
+        Sistema de navegación basado en URLs para mostrar distintos componentes según la ruta activa.
+      </p>
+    </mat-card>
+
+    <!-- Directivas -->
+    <mat-card 
+      routerLink="/app/home/directivas"
+      class="custom-card"
+      appearance="outlined"
+      style="background-color: #F3E5F5; border-left: 6px solid #611232; padding: 20px; cursor: pointer; transition: box-shadow 0.3s ease;">
+      <h4 style="color: #611232; margin: 0 0 10px;">
+        <mat-icon style="vertical-align: middle; color: #611232; margin-right: 6px;">extension</mat-icon>
+        Directivas
+      </h4>
+      <p style="color: #424242; font-size: 14px;">
+        Instrucciones especiales en el template que permiten modificar la estructura o el comportamiento de elementos HTML.
+      </p>
+    </mat-card>
+
+  </div>
+</div>

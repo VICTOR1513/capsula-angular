@@ -1,0 +1,63 @@
+<app-header></app-header>
+
+<br/><br/>
+
+<!--div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 80px;">
+
+  <div style="border: 2px solid #3F51B5; border-left: 6px solid #3F51B5; padding: 16px; width: 500px; border-radius: 8px; background-color: #F0F4FF;">
+    <h3 style="margin-top: 0; color: #3F51B5;">Material de estudio Cápsula</h3>
+    <p>Módulo que contiene material de estudio de los conceptos básicos de Angular.</p>
+    <a [routerLink]="['/app/home']" style="text-decoration: none; color: white;">
+      <button style="padding: 10px 20px; background-color: #3F51B5; color: white; border: none; border-radius: 4px;">Ir</button>
+    </a>
+
+  </div>
+
+  <div style="border: 2px solid #4CAF50; border-left: 6px solid #4CAF50; padding: 16px; width: 500px; border-radius: 8px; background-color: #E8F5E9;">
+    <h3 style="margin-top: 0; color: #388E3C;">Administrar Usuarios</h3>
+    <p>Módulo para la administración de usuarios.</p>
+    <a [routerLink]="['/app/home2']" style="text-decoration: none; color: white;">
+      <button style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px;">Ir</button>
+    </a>
+  </div>
+
+</div-->
+
+
+
+
+
+
+
+
+
+<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 80px;">
+
+<!-- Tarjeta para Home 1 -->
+<div class="custom-card card-blue" [routerLink]="['/app/home']" tabindex="0" role="button" aria-label="Ir a Material de estudio Cápsula">
+  <div class="card-header">
+    <mat-icon style="color: #611232;">menu_book</mat-icon>
+    <h3 style="color: #611232;">Material de estudio Cápsula</h3>
+  </div>
+  <div class="card-content">
+    <p>Módulo que contiene material de estudio de los conceptos básicos de Angular.</p>
+  </div>
+  <!--button class="btn-ir" type="button" aria-label="Ir a Material de estudio Cápsula">Ir</button-->
+</div>
+
+<!-- Tarjeta para Home 2 -->
+<div class="custom-card card-green" [routerLink]="['/app/home2']" tabindex="0" role="button" aria-label="Ir a Administrar Usuarios">
+  <div class="card-header">
+    <mat-icon style="color: #611232;">group</mat-icon>
+    <h3 style="color: #611232;">Administrar Usuarios</h3>
+  </div>
+  <div class="card-content">
+    <p>Módulo para la administración de usuarios.</p>
+  </div>
+  <!--button class="btn-ir" type="button" aria-label="Ir a Administrar Usuarios">Ir</button-->
+</div>
+</div>
+
+
+<app-footer></app-footer>
+

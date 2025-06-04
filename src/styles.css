@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* Estilos base para ambos botones */
+.boton-aceptar, 
+.boton-cancelar {
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  letter-spacing: 0.5px;
+  border: none;
+  margin-left: 16px;
+
+}
+
+/* Botón Aceptar (color principal #611232) */
+.boton-aceptar {
+  background-color: #611232;
+  color: white;
+  box-shadow: 0 4px 6px rgba(97, 18, 50, 0.2);
+}
+
+.boton-aceptar:hover {
+  background-color: #4a0d26;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(97, 18, 50, 0.3);
+}
+
+.boton-aceptar:active {
+  transform: translateY(0);
+}
+
+/* Botón Cancelar (estilo secundario) */
+.boton-cancelar {
+  background-color: white;
+  color: #611232;
+  border: 2px solid #611232;
+}
+
+.boton-cancelar:hover {
+  background-color: #f9f0f4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(97, 18, 50, 0.15);
+}
+
+.boton-cancelar:active {
+  transform: translateY(0);
+}
+

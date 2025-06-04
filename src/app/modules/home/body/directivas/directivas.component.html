@@ -1,0 +1,130 @@
+<div style="max-width: 50%; margin: 40px auto; padding-bottom: 120px; font-family: Arial, sans-serif;">
+
+  <h2 style="text-align: center; margin-bottom: 30px; color: #333;">
+    <mat-icon style="vertical-align: middle; color: #4CAF50; font-size: 28px; margin-right: 6px;">extension</mat-icon>
+    Directivas en Angular - Conceptos Básicos
+  </h2>
+
+  <!-- ¿Qué son las Directivas? -->
+  <mat-card style="background-color: #E8F5E9; border-left: 6px solid #4CAF50; padding: 16px; margin-bottom: 20px;">
+    <h4 style="margin: 0 0 8px 0; color: #2E7D32;">
+      <mat-icon style="vertical-align: middle; color: #2E7D32; font-size: 20px; margin-right: 6px;">help_outline</mat-icon>
+      ¿Qué son las Directivas?
+    </h4>
+    <p style="margin-bottom: 12px;">
+      Las directivas son instrucciones para modificar el DOM, cambiar estilos, comportamientos o estructura de elementos.
+    </p>
+    <p style="font-style: italic; color: #1B5E20; margin-bottom: 12px;">
+      Angular tiene tres tipos principales: estructurales, atributivas y componentes.
+    </p>
+    <a href="https://angular.io/guide/directive" target="_blank" style="text-decoration:none; color:#2E7D32; font-weight:600;">
+      Ver documentación oficial
+    </a>
+  </mat-card>
+
+  <!-- Directivas Estructurales -->
+  <mat-card style="background-color: #FFF3E0; border-left: 6px solid #FF9800; padding: 16px; margin-bottom: 20px;">
+    <h4 style="margin: 0 0 8px 0; color: #F57C00;">
+      <mat-icon style="vertical-align: middle; color: #F57C00; font-size: 20px; margin-right: 6px;">view_week</mat-icon>
+      Directivas Estructurales
+    </h4>
+    <p style="margin-bottom: 12px;">
+      Cambian la estructura del DOM agregando o removiendo elementos.
+    </p>
+    <p style="font-style: italic; color: #E65100; margin-bottom: 12px;">
+      Ejemplos comunes: <code>*ngIf</code>, <code>*ngFor</code>.
+    </p>
+
+      <pre ngNonBindable style="background-color: #FFE0B2; padding: 12px; border-radius: 4px; overflow-x:auto;">
+      &lt;!-- Mostrar solo si está activo --&gt;
+      &lt;div *ngIf="activo"&gt;¡Activo!&lt;/div&gt;
+
+      &lt;!-- Listar elementos --&gt;
+      &lt;ul&gt;
+        &lt;li *ngFor="let item of items"&gt;{{ item }}&lt;/li&gt;
+      &lt;/ul&gt;
+      </pre>
+
+    <a href="https://angular.io/guide/structural-directives" target="_blank" style="text-decoration:none; color:#F57C00; font-weight:600;">
+      Más sobre directivas estructurales
+    </a>
+  </mat-card>
+
+  <!-- Directivas Atributivas -->
+  <mat-card style="background-color: #E3F2FD; border-left: 6px solid #2196F3; padding: 16px; margin-bottom: 20px;">
+    <h4 style="margin: 0 0 8px 0; color: #1976D2;">
+      <mat-icon style="vertical-align: middle; color: #1976D2; font-size: 20px; margin-right: 6px;">format_paint</mat-icon>
+      Directivas Atributivas
+    </h4>
+    <p style="margin-bottom: 12px;">
+      Cambian la apariencia o comportamiento de un elemento existente sin modificar su estructura.
+    </p>
+    <p style="font-style: italic; color: #0D47A1; margin-bottom: 12px;">
+      Ejemplos comunes: <code>[ngClass]</code>, <code>[ngStyle]</code>.
+    </p>
+
+    <pre style="background-color: #BBDEFB; padding: 12px; border-radius: 4px; overflow-x:auto;">
+    &lt;!-- Cambiar clases CSS dinámicamente --&gt;
+    &lt;div &#91;ngClass&#93;="&#123;'resaltado': esResaltado&#125;"&gt;Texto con clase dinámica&lt;/div&gt;
+
+    &lt;!-- Cambiar estilos dinámicamente --&gt;
+    &lt;p &#91;ngStyle&#93;="&#123;'color': colorTexto, 'font-weight': 'bold'&#125;"&gt;Texto estilizado&lt;/p&gt;
+    </pre>
+
+
+
+    <a href="https://angular.io/guide/attribute-directives" target="_blank" style="text-decoration:none; color:#1976D2; font-weight:600;">
+      Más sobre directivas atributivas
+    </a>
+  </mat-card>
+
+  <!-- Directivas Personalizadas -->
+  <mat-card style="background-color: #F3E5F5; border-left: 6px solid #9C27B0; padding: 16px;">
+    <h4 style="margin: 0 0 8px 0; color: #6A1B9A;">
+      <mat-icon style="vertical-align: middle; color: #6A1B9A; font-size: 20px; margin-right: 6px;">build</mat-icon>
+      Directivas Personalizadas
+    </h4>
+    <p style="margin-bottom: 12px;">
+      Puedes crear tus propias directivas para encapsular comportamientos reutilizables.
+    </p>
+
+    <pre style="background-color: #E1BEE7; padding: 12px; border-radius: 4px; overflow-x:auto;">
+
+<pre style="background-color: #E1BEE7; padding: 12px; border-radius: 4px; overflow-x:auto;">
+import &#123; Directive, ElementRef, Renderer2, HostListener &#125; from '&#64;angular/core';
+
+&#64;Directive(&#123;
+  selector: '&#91;appResaltar&#93;'
+&#125;)
+export class ResaltarDirective &#123;
+  constructor(private el: ElementRef, private renderer: Renderer2) &#123;&#125;
+
+  &#64;HostListener('mouseenter') onMouseEnter() &#123;
+    this.renderer.setStyle(this.el.nativeElement, 'backgroundColor', 'yellow');
+  &#125;
+
+  &#64;HostListener('mouseleave') onMouseLeave() &#123;
+    this.renderer.removeStyle(this.el.nativeElement, 'backgroundColor');
+  &#125;
+&#125;
+</pre>
+
+    </pre>
+
+    <p>Luego úsala así en HTML:</p>
+    <pre style="background-color: #E1BEE7; padding: 12px; border-radius: 4px;">
+<div appResaltar>¡Pasa el mouse para resaltar!</div>
+    </pre>
+
+    <a href="https://angular.io/guide/attribute-directives#custom-directives" target="_blank" style="text-decoration:none; color:#6A1B9A; font-weight:600;">
+      Más sobre directivas personalizadas
+    </a>
+  </mat-card>
+
+      <button mat-raised-button color="primary" (click)="volver()" style="margin: 20px 0;">
+    <mat-icon style="vertical-align: middle;">arrow_back</mat-icon>
+    <span style="vertical-align: middle;">Regresar</span>
+  </button>
+  
+
+</div>
