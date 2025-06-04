@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { GlobalUtils } from '../../../utils/global-utils';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -8,18 +10,17 @@ import Swal from 'sweetalert2';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit {
+  public nombreApp: string = environment.APP_NAME;
   public nombreUsuario: string = 'Administrador';
   public isLoggedIn: boolean = false;
-  private readonly TOKEN_KEY = 'accessToken';
-  private readonly NOMBRE_USUARIO = 'nombreUsuario';
 
   constructor(private readonly router: Router) {}
 
   ngOnInit(): void {
-    const token = sessionStorage.getItem(this.TOKEN_KEY);
+    const token = sessionStorage.getItem(GlobalUtils.TOKEN_KEY);
     if (token) {
       this.isLoggedIn = true;
-      this.nombreUsuario = sessionStorage.getItem(this.NOMBRE_USUARIO) ?? '';
+      this.nombreUsuario = sessionStorage.getItem(GlobalUtils.NOMBRE_USUARIO) ?? '';
     }
   }
 
@@ -38,7 +39,7 @@ export class HeaderComponent implements OnInit {
       buttonsStyling: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        sessionStorage.removeItem(this.TOKEN_KEY);
+        sessionStorage.removeItem(GlobalUtils.TOKEN_KEY);
         this.router.navigate(['/']);
       }
     });

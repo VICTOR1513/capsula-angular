@@ -3,16 +3,16 @@
   style="background-color: #611232; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;">
 
   <span style="cursor: pointer; color: #fff;" routerLink="/app">
-    Arquetipo Infotec
+    {{nombreApp}}
   </span>
 
   <span class="spacer"></span>
 
   <div *ngIf="isLoggedIn" style="display: flex; align-items: center; color: white;">
-    <mat-icon>account_circle</mat-icon>
-    <span style="margin: 0 12px;">{{ nombreUsuario }}</span>
+    <mat-icon style="font-size: 24px;">account_circle</mat-icon>
+    <span style="margin: 0 12px; font-size: 16px;">{{ nombreUsuario }}</span>
     <button mat-icon-button (click)="cerrarSesion()" matTooltip="Cerrar sesión" style="color: white;">
-      <mat-icon>logout</mat-icon>
+      <mat-icon style="font-size: 20px;">logout</mat-icon>
     </button>
   </div>
 
