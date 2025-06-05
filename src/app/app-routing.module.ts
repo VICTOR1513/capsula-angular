@@ -6,24 +6,19 @@ import { NotFoundComponent } from './modules/shared/not-found/not-found.componen
 import { LoginComponent } from './modules/shared/auth/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent }, // login al iniciar la app
-  {
-    path: 'app',
+  { path: '', component: LoginComponent },
+  { path: 'menu', component: SeleccionarModuloComponent, data: { breadcrumb: 'Menu' }},
+  { path: 'menu', data: { breadcrumb: 'Menu' }, component: RenderizarModuloComponent,
     children: [
-      { path: '', component: SeleccionarModuloComponent }, // Página inicial luego del login
       {
-        path: '',
-        component: RenderizarModuloComponent,
-        children: [
-          {
-            path: 'home',
-            loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
-          },
-          {
-            path: 'home2',
-            loadChildren: () => import('./modules/home2/home2.module').then((m) => m.Home2Module),
-          },
-        ],
+        path: 'home',
+        data: { breadcrumb: 'Material de estudio Angular' },
+        loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
+      },
+      {
+        path: 'home2',
+        data: { breadcrumb: 'Administracion usuarios' },
+        loadChildren: () => import('./modules/home2/home2.module').then((m) => m.Home2Module),
       },
     ],
   },

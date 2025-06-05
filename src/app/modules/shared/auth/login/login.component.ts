@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       sessionStorage.setItem(GlobalUtils.TOKEN_KEY, environment.TOKEN);
       sessionStorage.setItem(GlobalUtils.NOMBRE_USUARIO, 'Juan Pérez');
-      this.router.navigate(['/app']);
+      this.router.navigate(['/menu']);
     }
   }
 }

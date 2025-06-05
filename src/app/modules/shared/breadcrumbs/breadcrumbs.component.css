@@ -1,0 +1,59 @@
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 12px 24px;
+  margin: 0 0 16px 0;
+  /*background-color: #f5f5f5;*/
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.breadcrumb-list .breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-list .breadcrumb-item a {
+  color: #393C3E;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.breadcrumb-list .breadcrumb-item a:hover {
+  color: #393C3E;
+  text-decoration: underline;
+}
+
+.breadcrumb-list .breadcrumb-item .current-page {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.breadcrumb-list .breadcrumb-item .separator {
+  margin: 0 8px;
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.dark-theme .breadcrumb-list {
+  background-color: #424242;
+}
+
+.dark-theme .breadcrumb-list .breadcrumb-item a {
+  color: #4fc3f7;
+}
+
+.dark-theme .breadcrumb-list .breadcrumb-item a:hover {
+  color: #80d8ff;
+}
+
+.dark-theme .breadcrumb-list .breadcrumb-item .current-page {
+  color: #ffffff;
+}
+
+.dark-theme .breadcrumb-list .breadcrumb-item .separator {
+  color: rgba(255, 255, 255, 0.7);
+}

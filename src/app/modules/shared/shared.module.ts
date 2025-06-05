@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 
 // Componentes compartidos
 import { HeaderComponent } from './header/header.component';
@@ -19,6 +19,8 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     LoginComponent,
     NotFoundComponent,
+    BreadcrumbsComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +42,7 @@ import { RouterModule } from '@angular/router';
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
-    
+    MatTooltipModule,
 
     MatDividerModule,
   ],
@@ -48,6 +51,7 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     LoginComponent,
     NotFoundComponent,
+    BreadcrumbsComponent,
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
@@ -59,7 +63,8 @@ import { RouterModule } from '@angular/router';
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTooltipModule,
   ],
 })
 export class SharedModule {}
