@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { filter, distinctUntilChanged } from 'rxjs/operators';
+import { BarraNavegacional } from '../models/barra-navegacional';
 
 @Injectable({ providedIn: 'root' })
-export class BreadcrumbsService {
-  private breadcrumbs$ = new BehaviorSubject<Breadcrumb[]>([]);
+export class BarraNavegacionalService {
   
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  private readonly breadcrumbs$ = new BehaviorSubject<BarraNavegacional[]>([]);
+  
+  constructor(private readonly router: Router, private readonly activatedRoute: ActivatedRoute) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       distinctUntilChanged()
@@ -26,7 +28,7 @@ export class BreadcrumbsService {
     this.breadcrumbs$.next(breadcrumbs);
   }
 
-  private buildBreadCrumb(route: ActivatedRouteSnapshot, parentUrl: string = '', breadcrumbs: Breadcrumb[] = []): Breadcrumb[] {
+  private buildBreadCrumb(route: ActivatedRouteSnapshot, parentUrl: string = '', breadcrumbs: BarraNavegacional[] = []): BarraNavegacional[] {
     if (!route) return breadcrumbs;
 
     try {
@@ -71,7 +73,7 @@ export class BreadcrumbsService {
 
       // 6. Agregar breadcrumb SOLO si tiene propiedad breadcrumb definida
       if (breadcrumbLabel && breadcrumbLabel.trim() !== '') {
-        const breadcrumb: Breadcrumb = {
+        const breadcrumb: BarraNavegacional = {
           label: breadcrumbLabel,
           url: normalizedUrl
         };
@@ -92,7 +94,7 @@ export class BreadcrumbsService {
 
       return breadcrumbs;
     } catch (error) {
-      console.error('Error building breadcrumbs:', error);
+      console.error(error);
       return breadcrumbs;
     }
   }
@@ -103,17 +105,12 @@ export class BreadcrumbsService {
     // MODIFICACIÓN CLAVE: Solo devolver label si existe propiedad breadcrumb
     if (data && data['breadcrumb']) {
       if (typeof data['breadcrumb'] === 'function') {
-        return data['breadcrumb'](route) || '';
+        return data['breadcrumb'](route) ?? '';
       }
-      return data['breadcrumb'] || '';
+      return data['breadcrumb'] ?? '';
     }
     
     // Si no hay breadcrumb definido, devolver cadena vacía
     return '';
   }
-}
-
-export interface Breadcrumb {
-  label: string;
-  url: string;
 }

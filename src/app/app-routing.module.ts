@@ -7,17 +7,17 @@ import { LoginComponent } from './modules/shared/auth/login/login.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'menu', component: SeleccionarModuloComponent, data: { breadcrumb: 'Menu' }},
-  { path: 'menu', data: { breadcrumb: 'Menu' }, component: RenderizarModuloComponent,
+  { path: 'menu', component: SeleccionarModuloComponent, data: { breadcrumb: 'Menú' }},
+  { path: 'menu', data: { breadcrumb: 'Menú' }, component: RenderizarModuloComponent,
     children: [
       {
         path: 'home',
-        data: { breadcrumb: 'Material de estudio Angular' },
+        data: { breadcrumb: 'Material de estudio de Angular' },
         loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
       },
       {
         path: 'home2',
-        data: { breadcrumb: 'Administracion usuarios' },
+        data: { breadcrumb: 'Administración de usuarios' },
         loadChildren: () => import('./modules/home2/home2.module').then((m) => m.Home2Module),
       },
     ],

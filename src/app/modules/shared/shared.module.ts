@@ -19,7 +19,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { BarraNavegacionalComponent } from './barra-navegacional/barra-navegacional.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
@@ -28,7 +28,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FooterComponent,
     LoginComponent,
     NotFoundComponent,
-    BreadcrumbsComponent,
+    BarraNavegacionalComponent,
   ],
   imports: [
     CommonModule,
@@ -51,7 +51,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FooterComponent,
     LoginComponent,
     NotFoundComponent,
-    BreadcrumbsComponent,
+    BarraNavegacionalComponent,
     CommonModule,
     ReactiveFormsModule,
     RouterModule,

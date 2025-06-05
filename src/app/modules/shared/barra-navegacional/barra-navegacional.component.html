@@ -1,0 +1,24 @@
+<nav aria-label="Ruta de navegación" *ngIf="barraNavegacionalList.length > 0">
+  <ol class="breadcrumb-list">
+    
+    <mat-icon  style="vertical-align: middle; margin-right: 4px; font-size: 18px; color: #393C3E;">home</mat-icon>
+
+    <li *ngFor="let item of barraNavegacionalList; last as isLast" 
+        class="breadcrumb-item"
+        [class.active]="isLast">
+      
+      <a *ngIf="!isLast" 
+         [routerLink]="item.url"
+         matTooltip="Volver a {{item.label}}">
+        {{ item.label }}
+      </a>
+      
+      <span *ngIf="isLast" class="current-page">
+        {{ item.label }}
+      </span>
+
+      <mat-icon *ngIf="!isLast" class="separator">chevron_right</mat-icon>
+    </li>
+  </ol>
+
+</nav>
