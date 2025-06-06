@@ -4,6 +4,17 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+
+.page-content {
+  width: 100%;
+  max-width: 80vw;      /* nunca será más ancho que el 90% del viewport*/
+  padding: 24px;
+  padding-top: 100px; /* espacio para el header*/
+  padding-bottom: 32px; /* espacio para el footer*/
+  margin: 0 auto;        /* centra horizontalmente*/
+  box-sizing: border-box;
+}
+
 /* Estilos base para ambos botones */
 .boton-aceptar, 
 .boton-cancelar {

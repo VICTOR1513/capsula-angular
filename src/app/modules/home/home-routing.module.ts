@@ -13,15 +13,15 @@ const routes: Routes = [
     path: '',
     component: BodyComponent,
     children: [
-      { path: 'menu', component: MenuComponent },
-      { path: 'dataBinding', component: DataBindingComponent },
-      { path: 'comunicacionEntreComponentes', component: ComunicacionEntreComponentesComponent },
+      { path: 'menuCapsula', component: MenuComponent/*, data: { breadcrumb: 'Menu Capsula'}*/},
+      { path: 'dataBinding', component: DataBindingComponent, data: { breadcrumb: ' Data Binding en Angular - Conceptos Básicos' }},
+      { path: 'comunicacionEntreComponentes', component: ComunicacionEntreComponentesComponent, data: { breadcrumb: 'Comunicación entre Componentes en Angular - Conceptos Básicos'} },
       
-      { path: 'routing', component: RoutingComponent },
-      { path: 'user/:id', component: UserComponent },
+      { path: 'routing', component: RoutingComponent, data: { breadcrumb: 'Routing en Angular - Conceptos Básicos'}},
+      { path: 'user/:id', component: UserComponent , data: { breadcrumb: 'Usuario'}},
 
-      { path: 'directivas', component: DirectivasComponent },
-      { path: '', redirectTo: 'menu', pathMatch: 'full' }
+      { path: 'directivas', component: DirectivasComponent, data: { breadcrumb: 'Directivas en Angular - Conceptos Básicos'}},
+      { path: '', redirectTo: 'menuCapsula', pathMatch: 'full' }
     ],
   },
 ];

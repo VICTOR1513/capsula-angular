@@ -19,6 +19,9 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
+import { BarraNavegacionalComponent } from './barra-navegacional/barra-navegacional.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {AlertComponent} from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,8 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     LoginComponent,
     NotFoundComponent,
+    BarraNavegacionalComponent,
+    AlertComponent,
   ],
   imports: [
     CommonModule,
@@ -39,8 +44,7 @@ import { RouterModule } from '@angular/router';
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
-    
-
+    MatTooltipModule,
     MatDividerModule,
   ],
   exports: [
@@ -48,6 +52,7 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     LoginComponent,
     NotFoundComponent,
+    BarraNavegacionalComponent,
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
@@ -59,7 +64,9 @@ import { RouterModule } from '@angular/router';
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTooltipModule,
+    AlertComponent
   ],
 })
 export class SharedModule {}

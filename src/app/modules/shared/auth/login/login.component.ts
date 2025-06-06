@@ -31,7 +31,12 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       sessionStorage.setItem(GlobalUtils.TOKEN_KEY, environment.TOKEN);
       sessionStorage.setItem(GlobalUtils.NOMBRE_USUARIO, 'Juan Pérez');
-      this.router.navigate(['/app']);
+      //Se agregan/Obtienen los permisos y roles.
+      const rolesArray: string[] = ['admin', 'marketing'];
+      sessionStorage.setItem(GlobalUtils.ROLES_USUARIO, JSON.stringify(rolesArray));
+      const permisosArray: string[] = ['editar', 'eliminar'];
+      sessionStorage.setItem(GlobalUtils.PERMISOS_USUARIO, JSON.stringify(permisosArray));
+      this.router.navigate(['/menu']);
     }
   }
 }

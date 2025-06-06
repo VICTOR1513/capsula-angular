@@ -5,25 +5,25 @@ import { RenderizarModuloComponent } from './modules/shared/renderizar-modulo/re
 import { NotFoundComponent } from './modules/shared/not-found/not-found.component';
 import { LoginComponent } from './modules/shared/auth/login/login.component';
 
+import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
+import { PermissionGuard } from './guards/permission.guard';
+
 const routes: Routes = [
-  { path: '', component: LoginComponent }, // login al iniciar la app
-  {
-    path: 'app',
+  { path: '', component: LoginComponent },
+  { path: 'menu', canActivateChild : [AuthGuard], component: SeleccionarModuloComponent, data: { breadcrumb: 'Menú' }},
+  { path: 'menu', data: { breadcrumb: 'Menú' }, component: RenderizarModuloComponent,
     children: [
-      { path: '', component: SeleccionarModuloComponent }, // Página inicial luego del login
       {
-        path: '',
-        component: RenderizarModuloComponent,
-        children: [
-          {
-            path: 'home',
-            loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
-          },
-          {
-            path: 'home2',
-            loadChildren: () => import('./modules/home2/home2.module').then((m) => m.Home2Module),
-          },
-        ],
+        path: 'home',
+        canActivate : [RoleGuard, PermissionGuard],
+        data: { breadcrumb: 'Material de estudio de Angular', roles: ['admin'], permisos: ['editar'] },
+        loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
+      },
+      {
+        path: 'home2',
+        data: { breadcrumb: 'Administración de usuarios' },
+        loadChildren: () => import('./modules/home2/home2.module').then((m) => m.Home2Module),
       },
     ],
   },

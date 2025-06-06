@@ -1,0 +1,16 @@
+<div *ngIf="message" [ngClass]="alertClass" [class.closed]="!isVisible" role="alert">
+
+  <mat-icon *ngIf="message.type === 'success'" aria-hidden="true" style="margin-left: 8px; vertical-align: middle;">check_circle</mat-icon>
+  <mat-icon *ngIf="message.type === 'error'" aria-hidden="true" style="margin-left: 8px; vertical-align: middle;">error</mat-icon>
+  <mat-icon *ngIf="message.type === 'warning'" aria-hidden="true" style="margin-left: 8px; vertical-align: middle;">warning</mat-icon>
+  <mat-icon *ngIf="message.type === 'info'" aria-hidden="true" style="margin-left: 8px; vertical-align: middle;">info</mat-icon>
+
+  <div style="flex: 1;">
+    <strong *ngIf="message.title">{{ message.title }}</strong><br />
+    {{ message.text }}
+  </div>
+
+  <button mat-button (click)="close()" type="button" class="close" aria-label="Cerrar">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 
 import Swal from 'sweetalert2';
+import {AlertService} from '../../../shared/services/alert.service';
 
 @Component({
   selector: 'app-data-binding',
@@ -9,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrl: './data-binding.component.css',
 })
 export class DataBindingComponent {
-  
+
   public titulo1:string = 'Data Binding en Angular';
 
   public titulo:string = 'Texto con interpolación ';
@@ -17,7 +18,7 @@ export class DataBindingComponent {
   public estaDeshabilitado:boolean = true;
   public nombreUsuario:string = '';
 
-  constructor(private readonly location: Location) {}
+  constructor(private readonly location: Location, public alertService: AlertService) { }
 
   public mostrarSaludo(): void {
     Swal.fire({

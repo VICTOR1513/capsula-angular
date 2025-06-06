@@ -40,9 +40,12 @@ export class HeaderComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         sessionStorage.removeItem(GlobalUtils.TOKEN_KEY);
+        sessionStorage.removeItem(GlobalUtils.NOMBRE_USUARIO);
+
+        sessionStorage.removeItem(GlobalUtils.ROLES_USUARIO);
+        sessionStorage.removeItem(GlobalUtils.PERMISOS_USUARIO);
         this.router.navigate(['/']);
       }
     });
   }
-  
 }

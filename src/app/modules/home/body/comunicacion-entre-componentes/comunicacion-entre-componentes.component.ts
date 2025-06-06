@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
-import { Usuario } from '../../../../model/usuario';
+import { Usuario } from '../../../../models/usuario';
 import { Location } from '@angular/common';
 
 
