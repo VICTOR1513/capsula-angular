@@ -1,0 +1,28 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  margin-top: 70px;
+}
+
+.icon-wrapper {
+  cursor: pointer;
+  margin-right: 8px;
+  color: #007bff;
+  font-size: 1.2rem;
+}
+
+.icon-wrapper:hover {
+  color: #0056b3;
+}
+
+::ng-deep .header-custom {
+  background-color: #611232 !important;
+  color: white !important;
+  text-align: center !important;
+  font-weight: bold;
+}
+
+::ng-deep .center-cell {
+  text-align: center !important;
+}

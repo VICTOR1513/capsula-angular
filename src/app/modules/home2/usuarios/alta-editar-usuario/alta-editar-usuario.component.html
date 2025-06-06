@@ -1,0 +1,36 @@
+<br/>
+
+<div class="container" style="margin-top: 40px;">
+    <h2>{{tituloPantalla}}</h2>
+    <form>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="user.nombre" name="nombre" placeholder="Escribe tu nombre">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Apellido Paterno</mat-label>
+            <input matInput [(ngModel)]="user.apellidoPaterno" name="apellidoPaterno" placeholder="Escribe tu apellido paterno">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Apellido Materno</mat-label>
+            <input matInput [(ngModel)]="user.apellidoMaterno" name="apellidoMaterno" placeholder="Escribe tu apellido materno">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput [(ngModel)]="user.correo" name="correo" type="email" placeholder="Escribe tu correo electrónico">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Rol</mat-label>
+            <mat-select [(ngModel)]="user.rol" name="rol" placeholder="Selecciona un rol">
+                <mat-option *ngFor="let rol of roles" [value]="rol">
+                    {{ rol }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="button-group">
+            <button mat-raised-button color="primary" type="submit" (click)="guardarModificar()">{{tituloBoton}}</button>
+            <button mat-raised-button color="accent" type="button" [routerLink]="['/app/home2']">Cancelar</button>
+        </div>
+    </form>
+</div>
