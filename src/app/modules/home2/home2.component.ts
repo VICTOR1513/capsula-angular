@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Usuario } from '../../model/usuario';
+import { Usuario } from '../../models/usuario';
 import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({

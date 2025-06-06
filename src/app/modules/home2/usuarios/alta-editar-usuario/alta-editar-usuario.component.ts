@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Usuario } from '../../../../model/usuario';
+import { Usuario } from '../../../../models/usuario';
 import { UsuariosService } from '../../../../services/usuarios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-alta-editar-usuario',
@@ -60,8 +61,27 @@ export class AltaEditarUsuarioComponent {
     });
   }
 
+  validarDatos(): { valido: boolean, datos?: Usuario } {
+    const { nombre, apellidoPaterno, apellidoMaterno, correo, rol } = this.user;
+
+    // Verificar si alguno de los campos requeridos está vacío
+    if (!nombre || !apellidoPaterno || !apellidoMaterno || !correo || !rol) {
+      Swal.fire({
+        title: 'Datos incompletos',
+        text: 'Por favor, completa todos los campos obligatorios.',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar'
+      });
+      return { valido: false };
+    }
+
+    // Todos los datos requeridos están presentes
+    return { valido: true, datos: this.user };
+  }
+
   guardarModificar(): void {
-    if (this.usuarioForm.valid) {
+    const resultado = this.validarDatos();
+    if (resultado.valido) {
       // Construir el objeto base desde el formulario
       const baseUsuario = {
         ...this.usuarioForm.value
@@ -75,12 +95,16 @@ export class AltaEditarUsuarioComponent {
       console.log(this.isAlta ? 'Usuario registrado:' : 'Usuario actualizado:', usuarioPayload);
 
       if (this.isAlta) {
+        Swal.fire({title: 'Exito!', text: "Se guardo correctamente", icon: 'success', confirmButtonText: 'Aceptar'});
         //Metodo de Guardar
       }else{
         //Metodo de Modificar
+        Swal.fire({title: 'Exito!', text: "Se modifico correctamente", icon: 'success', confirmButtonText: 'Aceptar'});
       }
-
-      this.router.navigate(['/app/home2']);
+      setTimeout(() => {
+        this.router.navigate(['/menu/home2']);
+      }, 3000);
+      
     } else {
       this.usuarioForm.markAllAsTouched();
     }
