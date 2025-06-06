@@ -21,6 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
 import { BarraNavegacionalComponent } from './barra-navegacional/barra-navegacional.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {AlertComponent} from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     LoginComponent,
     NotFoundComponent,
     BarraNavegacionalComponent,
+    AlertComponent,
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTabsModule,
     MatCheckboxModule,
     MatTooltipModule,
-
     MatDividerModule,
   ],
   exports: [
@@ -65,6 +66,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatCheckboxModule,
     MatDividerModule,
     MatTooltipModule,
+    AlertComponent
   ],
 })
 export class SharedModule {}

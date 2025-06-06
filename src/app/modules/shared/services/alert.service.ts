@@ -1,46 +1,84 @@
-import {Injectable} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Injectable } from '@angular/core';
+import { Router, NavigationStart } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+//Tipos de alertas
+export type AlertType = 'success' | 'error' | 'warning' | 'info';
+
+export interface Alert {
+    type: AlertType;
+    text: string;
+    title: string;
+    duration?: number;
+}
+
+const DEFAULT_TITLES: Record<AlertType, string> = {
+    success: '¡Éxito!',
+    error: '¡Se ha presentado un error!',
+    warning: '¡Atención!',
+    info: 'Información',
+};
+
+@Injectable({ providedIn: 'root' })
 export class AlertService {
-  constructor(private snackBar: MatSnackBar) {
-  }
+    private subject = new Subject<Alert | null>();
+    private persistOnRouteChange = false;
+    private timeoutId?: ReturnType<typeof setTimeout>;
 
-  showSuccess(duration: number = 3000): void {
-    this.snackBar.open('Operación exitosa', 'Cerrar', {
-      duration,
-      panelClass: ['success-snackbar'],
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
-  }
+    constructor(router: Router) {
+        // Limpia alertas al cambiar ruta si no se deben mantener
+        router.events.subscribe((event) => {
+            if (event instanceof NavigationStart && !this.persistOnRouteChange) {
+                this.clear();
+            }
+            this.persistOnRouteChange = false;
+        });
+    }
 
-  showError(duration: number = 4000): void {
-    this.snackBar.open('ERROR Algo salio mal', 'Cerrar', {
-      duration,
-      panelClass: ['error-snackbar'],
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
-  }
+    getAlert(): Observable<Alert | null> {
+        return this.subject.asObservable();
+    }
 
-  showInfo(duration: number = 3000): void {
-    this.snackBar.open('Información', 'Cerrar', {
-      duration,
-      panelClass: ['info-snackbar'],
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
-  }
+    private showAlert(type: AlertType, text: string, duration?: number, persistOnRouteChange = false): void {
+        this.persistOnRouteChange = persistOnRouteChange;
 
-  showWarning(duration: number = 3000): void {
-    this.snackBar.open('Sucedio algo inesperado', 'Cerrar', {
-      duration,
-      panelClass: ['warning-snackbar'],
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
-  }
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+        }
+
+            const ALERT: Alert = {
+            type,
+            text,
+            title: DEFAULT_TITLES[type],
+            duration: duration ? duration * 1000 : undefined,
+        };
+
+        this.subject.next(ALERT);
+
+        if (duration && duration > 0) {
+            this.timeoutId = setTimeout(() => this.clear(), duration * 1000);
+        }
+    }
+
+    success(text: string, duration?: number, persistOnRouteChange = false): void {
+        this.showAlert('success', text, duration, persistOnRouteChange);
+    }
+
+    error(text = 'Error.', duration?: number, persistOnRouteChange = false): void {
+        this.showAlert('error', text, duration, persistOnRouteChange);
+    }
+
+    info(text: string, duration?: number, persistOnRouteChange = false): void {
+        this.showAlert('info', text, duration, persistOnRouteChange);
+    }
+
+    warning(text: string, duration?: number, persistOnRouteChange = false): void {
+        this.showAlert('warning', text, duration, persistOnRouteChange);
+    }
+
+    // Limpia la alerta actual
+    clear(): void {
+        if (this.timeoutId) clearTimeout(this.timeoutId);
+        this.subject.next(null);
+    }
 }
