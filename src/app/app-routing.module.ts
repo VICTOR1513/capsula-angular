@@ -5,14 +5,19 @@ import { RenderizarModuloComponent } from './modules/shared/renderizar-modulo/re
 import { NotFoundComponent } from './modules/shared/not-found/not-found.component';
 import { LoginComponent } from './modules/shared/auth/login/login.component';
 
+import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
+import { PermissionGuard } from './guards/permission.guard';
+
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'menu', component: SeleccionarModuloComponent, data: { breadcrumb: 'Menú' }},
+  { path: 'menu', canActivateChild : [AuthGuard], component: SeleccionarModuloComponent, data: { breadcrumb: 'Menú' }},
   { path: 'menu', data: { breadcrumb: 'Menú' }, component: RenderizarModuloComponent,
     children: [
       {
         path: 'home',
-        data: { breadcrumb: 'Material de estudio de Angular' },
+        canActivate : [RoleGuard, PermissionGuard],
+        data: { breadcrumb: 'Material de estudio de Angular', roles: ['admin'], permisos: ['editar'] },
         loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
       },
       {

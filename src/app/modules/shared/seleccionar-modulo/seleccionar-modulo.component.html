@@ -7,7 +7,7 @@
 
   <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
     <!-- Tarjeta para Home 1 -->
-    <div class="custom-card card-blue" [routerLink]="['/menu/home']" tabindex="0" role="button" aria-label="Ir a Material de estudio Cápsula">
+    <div *ngIf="checkHomeAccess()" class="custom-card card-blue" [routerLink]="['/menu/home']" tabindex="0" role="button" aria-label="Ir a Material de estudio Cápsula">
       <div class="card-header">
         <mat-icon style="color: #611232;">menu_book</mat-icon>
         <h3 style="color: #611232;">Material de estudio Cápsula</h3>
