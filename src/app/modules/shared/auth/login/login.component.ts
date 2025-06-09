@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { environment } from '../../../../../environments/environment';
-import { GlobalUtils } from '../../../../utils/global-utils';
+import { AuthServices } from '../../../../services/auth-login.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly router: Router
+    private readonly authServices: AuthServices
   ) {}
 
   ngOnInit(): void {
@@ -29,14 +28,29 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void {
     if (this.loginForm.valid) {
-      sessionStorage.setItem(GlobalUtils.TOKEN_KEY, environment.TOKEN);
-      sessionStorage.setItem(GlobalUtils.NOMBRE_USUARIO, 'Juan Pérez');
+
+
+    this.authServices.iniciarSesion().subscribe({
+      next: respuesta => {
+        console.log('Usuario autenticado:', respuesta);
+      },
+      error: error => {
+        console.error('Error al autenticar:', error);
+      }
+    });
+  
+
+
+
+
+      /*sessionStorage.setItem(GlobalUtils.TOKEN_KEY, environment.TOKEN);
+      sessionStorage.setItem(GlobalUtils.NOMBRE_USUARIO, 'Juan Pérez');*/
       //Se agregan/Obtienen los permisos y roles.
-      const rolesArray: string[] = ['admin', 'marketing'];
+      /*const rolesArray: string[] = ['admin', 'marketing'];
       sessionStorage.setItem(GlobalUtils.ROLES_USUARIO, JSON.stringify(rolesArray));
       const permisosArray: string[] = ['editar', 'eliminar'];
       sessionStorage.setItem(GlobalUtils.PERMISOS_USUARIO, JSON.stringify(permisosArray));
-      this.router.navigate(['/menu']);
+      this.router.navigate(['/menu']);*/
     }
   }
 }

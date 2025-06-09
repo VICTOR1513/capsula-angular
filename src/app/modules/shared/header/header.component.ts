@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { GlobalUtils } from '../../../utils/global-utils';
 import { environment } from '../../../../environments/environment';
+import { AuthServices } from '../../../services/auth-login.service';
 
 @Component({
   selector: 'app-header',
@@ -12,15 +13,12 @@ import { environment } from '../../../../environments/environment';
 export class HeaderComponent implements OnInit {
   public nombreApp: string = environment.APP_NAME;
   public nombreUsuario: string = 'Administrador';
-  public isLoggedIn: boolean = false;
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly router: Router,public authServices :AuthServices) {}
 
   ngOnInit(): void {
-    const token = sessionStorage.getItem(GlobalUtils.TOKEN_KEY);
-    if (token) {
-      this.isLoggedIn = true;
-      this.nombreUsuario = sessionStorage.getItem(GlobalUtils.NOMBRE_USUARIO) ?? '';
+    if (this.authServices.estaAutenticado()) {
+      this.nombreUsuario = sessionStorage.getItem(GlobalUtils.USER_KEY) ?? '';
     }
   }
 
@@ -39,12 +37,13 @@ export class HeaderComponent implements OnInit {
       buttonsStyling: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        sessionStorage.removeItem(GlobalUtils.TOKEN_KEY);
-        sessionStorage.removeItem(GlobalUtils.NOMBRE_USUARIO);
+        //sessionStorage.removeItem(GlobalUtils.TOKEN_KEY);
+        //sessionStorage.removeItem(GlobalUtils.USER_KEY);
 
-        sessionStorage.removeItem(GlobalUtils.ROLES_USUARIO);
-        sessionStorage.removeItem(GlobalUtils.PERMISOS_USUARIO);
-        this.router.navigate(['/']);
+        //sessionStorage.removeItem(GlobalUtils.ROLES_USUARIO);
+        //sessionStorage.removeItem(GlobalUtils.PERMISOS_USUARIO);
+        //this.router.navigate(['/']);
+        this.authServices.cerrarSesion();
       }
     });
   }

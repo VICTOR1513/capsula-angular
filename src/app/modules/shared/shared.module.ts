@@ -22,6 +22,12 @@ import { RouterModule } from '@angular/router';
 import { BarraNavegacionalComponent } from './barra-navegacional/barra-navegacional.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {AlertComponent} from './alert/alert.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+//import { LoadingInterceptor } from '../../interceptors/loading.interceptor';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { LoadingInterceptor } from '../../interceptors/loading.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +37,7 @@ import {AlertComponent} from './alert/alert.component';
     NotFoundComponent,
     BarraNavegacionalComponent,
     AlertComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -66,7 +73,13 @@ import {AlertComponent} from './alert/alert.component';
     MatCheckboxModule,
     MatDividerModule,
     MatTooltipModule,
-    AlertComponent
+    AlertComponent,
+    LoadingSpinnerComponent
+  ],
+    providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ],
 })
 export class SharedModule {}
